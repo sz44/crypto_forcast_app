@@ -1,0 +1,135 @@
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@1,500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Work+Sans&display=swap');
+
+*{
+    padding: 0px;
+    margin: 0px;
+    font-family: 'Work Sans', sans-serif;
+}
+
+ul {
+    list-style-type: none;
+}
+
+ul li {
+    margin: 0px 20px;
+}
+
+body {
+    background-color: black;
+    display: grid;
+    place-items: center;
+}
+
+.header-text h3 {
+    color: #c4c66e;
+    font-family: 'Open Sans', sans-serif;
+    font-size: 3rem;
+    margin-top: 2rem;
+}
+
+.header-text {
+    text-align: center;
+    margin-top: 10rem;
+    margin-bottom: 5rem;
+}
+/*
+.chart-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}*/
+.chart-container {
+    
+}
+
+.selector ul{
+    display: flex;
+}
+
+.plot_bgcolor {
+    color:#c4c66e;
+}
+
+.paper_bgcolor {
+    color:#1e1e1e;
+}
+/*
+.buttons {
+    margin-top: 4vmin;
+    display: flex;
+    justify-content: space-around;
+    padding: 0 40%;
+}
+*/
+.buttons {
+    display: flex;
+    justify-content: space-around;
+    max-width: 80%;
+    margin: auto;
+}
+
+
+
+
+.buttons > button:focus-visible {
+  box-shadow: #222222 0 0 0 2px, rgba(255, 255, 255, 0.8) 0 0 0 4px;
+  transition: box-shadow .2s;
+}
+
+
+.buttons > button:focus {
+    background-color: #c1c1c1;
+    border-color: #000000;
+    transform: scale(.96);
+}
+
+.buttons > button:active {
+  background-color: #F7F7F7;
+  border-color: #000000;
+  transform: scale(1.5);
+}
+
+.buttons > button {
+    background-color: #000000;
+    border: 1px solid #ffffff;
+    border-radius: 8px;
+    box-sizing: border-box;
+    color: #ffffff;
+    cursor: pointer;
+    display: inline-block;
+    font-family: "Roboto","Helvetica Neue",sans-serif;
+    font-size: 12px;
+    font-weight: 600;
+    line-height: 20px;
+    margin: 0;
+    outline: none;
+    padding: 13px 23px;
+    position: relative;
+    text-align: center;
+    text-decoration: none;
+    touch-action: manipulation;
+    transition: box-shadow .2s,-ms-transform .1s,-webkit-transform .1s,transform .1s;
+    user-select: none;
+    -webkit-user-select: none;
+    width: auto;
+}
+
+.loading_box {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 40vw;
+    height: 40vh;
+    background-color:#eceaea;
+    z-index: 100;
+    opacity: 0.4;
+    transform: translate(-50%, 10%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.chart {
+    position: relative;
+}

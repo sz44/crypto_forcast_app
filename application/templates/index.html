@@ -1,0 +1,131 @@
+{% extends "layout.html" %}
+{% block content %}
+
+    <div class="buttons">
+        <button id="Bitcoin-button" onclick="handleBitcoinClick()">
+            Bitcoin
+        </button>
+        <button id="Etherium-button" onclick="handleEtheriumClick()">
+            Etherium
+        </button>
+        <button id="BNB-button" onclick="handleBNBClick()">
+            BNB
+        </button>
+        <button id="Cardano-button" onclick="handleCardanoClick()">
+            Cardano
+        </button>
+        <button id="Tether-button" onclick="handleTetherClick()">
+            Tether
+        </button>
+        <button id="USD-coin-button" onclick="handleUSDCClick()">
+            USD-coin
+        </button>
+        <button id="Doge-button" onclick="handleDogeClick()">
+            Doge
+        </button>
+    </div>
+
+    <h2>{{ currency }}</h2>
+    <div id="chart" class="">
+        <div class="loading_box">
+            <h2>Loading...</h2>
+        </div> 
+    </div>
+     
+
+    <!-- plotly CDN -->
+    <script src="https://cdn.plot.ly/plotly-2.16.1.min.js"></script>
+    <script>
+        const loadingbox = document.querySelector(".loading_box")
+        const handleBitcoinClick =  () => {
+            loadingbox.style.display = "Flex";
+             fetch('/bitcoin')
+                .then((response) => response.json())
+                .then((data) => {
+                    console.log(data);
+                    Plotly.newPlot("chart", data, {});
+                    console.log("Bitcoin")
+                    loadingbox.style.display = "None";
+                })
+                .catch((error) => console.log("Error: " + error));
+        }
+        const handleEtheriumClick =  () => {
+            loadingbox.style.display = "Flex";
+             fetch('/etherium')
+                .then((response) => response.json())
+                .then((data) => {
+                    console.log(data);
+                    Plotly.newPlot("chart", data, {});
+                    console.log("Etherium")
+                    loadingbox.style.display = "None";
+                })
+                .catch((error) => console.log("Error: " + error));         
+        }
+        const handleDogeClick =  () => {
+            loadingbox.style.display = "Flex";
+             fetch('/doge')
+                .then((response) => response.json())
+                .then((data) => {
+                    console.log(data);
+                    Plotly.newPlot("chart", data, {});
+                    console.log("Doge")
+                    loadingbox.style.display = "None";
+                })
+                .catch((error) => console.log("Error: " + error));         
+        }
+        const handleCardanoClick =  () => {
+            loadingbox.style.display = "Flex";
+             fetch('/cardano')
+                .then((response) => response.json())
+                .then((data) => {
+                    console.log(data);
+                    Plotly.newPlot("chart", data, {});
+                    console.log("Cardano")
+                    loadingbox.style.display = "None";
+                })
+                .catch((error) => console.log("Error: " + error));         
+        }
+        const handleTetherClick =  () => {
+            loadingbox.style.display = "Flex";
+             fetch('/tether')
+                .then((response) => response.json())
+                .then((data) => {
+                    console.log(data);
+                    Plotly.newPlot("chart", data, {});
+                    console.log("Tether")
+                    loadingbox.style.display = "None";
+                })
+                .catch((error) => console.log("Error: " + error));         
+        }
+        const handleUSDCClick =  () => {
+            loadingbox.style.display = "Flex";
+             fetch('/usd-coin')
+                .then((response) => response.json())
+                .then((data) => {
+                    console.log(data);
+                    Plotly.newPlot("chart", data, {});
+                    console.log("USD-coin")
+                    loadingbox.style.display = "None";
+                })
+                .catch((error) => console.log("Error: " + error));         
+        }
+        const handleBNBClick =  () => {
+            loadingbox.style.display = "Flex";
+             fetch('/bnb')
+                .then((response) => response.json())
+                .then((data) => {
+                    console.log(data);
+                    Plotly.newPlot("chart", data, {});
+                    console.log("BNB")
+                    loadingbox.style.display = "None";
+                })
+                .catch((error) => console.log("Error: " + error));         
+        }
+
+
+        const graph = {{ graph1JSON | safe }};
+        Plotly.newPlot("chart", graph, {});
+        loadingbox.style.display = "None";
+    </script>
+
+{% endblock %}
