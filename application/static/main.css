@@ -20,28 +20,18 @@ body {
     display: grid;
     place-items: center;
 }
-
-.header-text h3 {
-    color: #c4c66e;
-    font-family: 'Open Sans', sans-serif;
-    font-size: 3rem;
-    margin-top: 2rem;
-}
-
 .header-text {
     text-align: center;
     margin-top: 10rem;
     margin-bottom: 5rem;
 }
-/*
-.chart-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}*/
-.chart-container {
-    
+.header-text h3 {
+    color: #c4c66e;
+    /* font-family: 'Open Sans', sans-serif; */
+    font-size: 3rem;
+    margin-top: 2rem;
 }
+
 
 .selector ul{
     display: flex;
@@ -60,23 +50,18 @@ body {
     display: flex;
     justify-content: space-around;
     padding: 0 40%;
-}
 */
 .buttons {
-    display: flex;
+    display: flex; 
     justify-content: space-around;
     max-width: 80%;
     margin: auto;
 }
 
-
-
-
 .buttons > button:focus-visible {
   box-shadow: #222222 0 0 0 2px, rgba(255, 255, 255, 0.8) 0 0 0 4px;
   transition: box-shadow .2s;
 }
-
 
 .buttons > button:focus {
     background-color: #c1c1c1;
@@ -115,9 +100,10 @@ body {
     width: auto;
 }
 
+
 .loading_box {
     position: absolute;
-    top: 50%;
+    top: 44%;
     left: 50%;
     width: 40vw;
     height: 40vh;
@@ -130,6 +116,55 @@ body {
     justify-content: center;
 }
 
-.chart {
+.error_box {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 40vw;
+    height: 40vh;
+    background-color:#eceaea;
+    z-index: 100;
+    opacity: 0.4;
+    transform: translate(-50%, 10%);
+    display: none;
+    align-items: center;
+    justify-content: center;
+}
+
+#chart {
+    width: 900px;
+    height: 600px;
+    /*position: relative;*/
+}
+
+input {
+    box-shadow: 0 0 15px 4px rgba(0,0,0,0.06);
+    padding: 5px;
+    border-radius: 6px;
+}
+
+#inputBox {
+    text-align: center;
+    margin: 10px 0px;
+}
+
+.ticker-input > button {
+    background-color: #ffffff;
+    border: 1px solid #ffffff;
+    border-radius: 8px;
+    box-sizing: border-box;
+    color: #000000;
+    cursor: pointer;
+    display: inline-block;
+    font-family: "Roboto","Helvetica Neue",sans-serif;
+    font-size: 12px;
+    font-weight: 600;
+    line-height: 8px;
+    margin: 0;
+    outline: none;
+    padding: 8px 13px;
     position: relative;
+    text-align: center;
+    text-decoration: none;
+    transition: box-shadow .2s,-ms-transform .1s,-webkit-transform .1s,transform .1s;
 }

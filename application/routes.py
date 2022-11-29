@@ -1,6 +1,6 @@
 from application import app
 
-from flask import render_template, url_for
+from flask import render_template, url_for, request
 import pandas as pd
 import json
 import plotly
@@ -25,6 +25,7 @@ def load_data(ticker):
     data.reset_index(inplace=True)
     return data
 
+#pandas data frame object
 def df_train_data(data):
     df_train = data[['Date', 'Close']]
     
@@ -53,6 +54,47 @@ def index():
 
     return render_template("index.html", title="Home", graph1JSON = graph1JSON, currency="Bitcoin")
 
+@app.route("/search", methods=["GET"])
+def search():
+    args = request.args
+    print(args)
+    ticker = args.get('ticker')
+    print(ticker)
+    data = load_data(ticker)
+    print(type(data))
+
+    if data.empty:
+        print("no data")
+        return "ticker not found"
+
+    df_data = df_train_data(data)
+
+    obj1 = make_predict(df_data)
+    
+
+    fig2 = plot_plotly(obj1["m"], obj1["forecast"])
+    fig2.update_layout(plot_bgcolor="#c4c66e")
+    fig2.update_layout(paper_bgcolor="#000000")
+    fig2.update_layout(       
+        xaxis_title="Years",
+        yaxis_title="Price ($)",
+        legend_title="Legend Title",
+        font=dict(
+            family="Courier New, monospace",
+            size=14,
+            color="White"
+        )
+    )
+    fig2.update_xaxes(
+        rangeselector_bgcolor="#000",
+        rangeselector_bordercolor="#fff",
+        rangeselector_borderwidth=1
+    )
+    graph1JSON = json.dumps(fig2, cls=plotly.utils.PlotlyJSONEncoder)
+    
+    return graph1JSON
+
+
 @app.route("/bitcoin")
 def index_bitcoin():
     # Generate graph
@@ -60,7 +102,7 @@ def index_bitcoin():
     df_data = df_train_data(data)
     obj1 = make_predict(df_data)
 
-    # Graph Two
+    # update layout
     fig2 = plot_plotly(obj1["m"], obj1["forecast"])
     fig2.update_layout(plot_bgcolor="#c4c66e")
     fig2.update_layout(paper_bgcolor="#000000")

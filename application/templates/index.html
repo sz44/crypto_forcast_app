@@ -23,12 +23,21 @@
         <button id="Doge-button" onclick="handleDogeClick()">
             Doge
         </button>
-    </div>
+    </div>    
 
-    <h2>{{ currency }}</h2>
+    <form action="" id="inputBox">
+        <div class="ticker-input">
+            <input type="text" name="ticker">
+            <button type="submit">Submit</button>
+        </div>
+    </form>
+
     <div id="chart" class="">
         <div class="loading_box">
             <h2>Loading...</h2>
+        </div>
+        <div class="error_box">
+            <h2>Could not find currency</h2>
         </div> 
     </div>
      
@@ -36,9 +45,38 @@
     <!-- plotly CDN -->
     <script src="https://cdn.plot.ly/plotly-2.16.1.min.js"></script>
     <script>
+        const inputForm = document.getElementById("inputBox")
         const loadingbox = document.querySelector(".loading_box")
+        const errorbox = document.querySelector(".error_box")
+
+        inputForm.addEventListener('submit', () => {
+            event.preventDefault();    // prevent page from refreshing
+            loadingbox.style.display = "Flex";
+            errorbox.style.display = "None";
+            const formData = new FormData(inputForm);  // grab the data inside the form fields
+            const field = formData.get('ticker')
+            fetch(`/search?ticker=${field}`, { method: 'GET'})
+            .then((response) => response.json())
+            .then((data) => {
+                    console.log(data);
+                    Plotly.newPlot("chart", data, {});
+                    console.log("User Input")
+                    loadingbox.style.display = "None";
+                })
+            .catch((error) => {
+                loadingbox.style.display = "None";
+                errorbox.style.display = "Flex";
+                //loadingbox.append(error)
+                //const loadingboxText = document.querySelector(".loading_box h2");
+                //loadingboxText.innerText = "error";
+                
+            });
+        });
+
+        
         const handleBitcoinClick =  () => {
             loadingbox.style.display = "Flex";
+            errorbox.style.display = "None";
              fetch('/bitcoin')
                 .then((response) => response.json())
                 .then((data) => {
@@ -51,6 +89,7 @@
         }
         const handleEtheriumClick =  () => {
             loadingbox.style.display = "Flex";
+            errorbox.style.display = "None";
              fetch('/etherium')
                 .then((response) => response.json())
                 .then((data) => {
@@ -63,6 +102,7 @@
         }
         const handleDogeClick =  () => {
             loadingbox.style.display = "Flex";
+            errorbox.style.display = "None";
              fetch('/doge')
                 .then((response) => response.json())
                 .then((data) => {
@@ -75,6 +115,7 @@
         }
         const handleCardanoClick =  () => {
             loadingbox.style.display = "Flex";
+            errorbox.style.display = "None";
              fetch('/cardano')
                 .then((response) => response.json())
                 .then((data) => {
@@ -87,6 +128,7 @@
         }
         const handleTetherClick =  () => {
             loadingbox.style.display = "Flex";
+            errorbox.style.display = "None";
              fetch('/tether')
                 .then((response) => response.json())
                 .then((data) => {
@@ -99,6 +141,7 @@
         }
         const handleUSDCClick =  () => {
             loadingbox.style.display = "Flex";
+            errorbox.style.display = "None";
              fetch('/usd-coin')
                 .then((response) => response.json())
                 .then((data) => {
@@ -111,6 +154,7 @@
         }
         const handleBNBClick =  () => {
             loadingbox.style.display = "Flex";
+            errorbox.style.display = "None";
              fetch('/bnb')
                 .then((response) => response.json())
                 .then((data) => {
